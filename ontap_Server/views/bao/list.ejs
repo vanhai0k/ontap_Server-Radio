@@ -1,0 +1,111 @@
+<%- include('../layout/dautrang') %>
+
+<div style="text-align: center;">
+  <h3>Danh sách</h3>
+</div>
+  <% if(list !="" ){ %>
+    <table class="table table-hover">
+
+      <thead>
+        <tr>
+          <th scope="col">STT</th>
+          <th scope="col">Tên bao</th>
+          <th scope="col">Noi dung</th>
+          <th scope="col">Status</th>
+          <th scope="col">Anh</th>
+          <th scope="col">Chức năng</th>
+        </tr>
+      </thead>
+      <% list.forEach((row,index)=> { %>
+
+        <tbody>
+          <tr>
+            <th scope="row">
+              <%= index %>
+            </th>
+            <td>
+              <%= row.tieude %>
+            </td>
+            <td>
+              <%= row.noidung %>
+            </td>
+            <% if(row.status==1){ %>
+              <td style="color: green;">
+                Hoat dong
+              </td>
+              <% } else{ %>
+                <td style="color: brown;">
+                  Nghi
+                </td>
+                <% } %>
+
+                  <td>
+                    <img src="/<%= row.image %>" width="40" height="40" class="rounded-circle" alt="">
+                  </td>
+                  <form id="delete-product"></form>
+                  <td>
+                    <button style="width: 90px;height: 30px;border-radius: 10px;" data-bs-target="#staticBackdrop"
+                      data-bs-toggle="modal" data-id="<%= row._id %>">
+                      <a style="text-decoration: none;color: black;">Xoa SP</a></button>
+
+                    <button style="width: 90px;height: 30px;border-radius: 10px;">
+                      <a href="/sp/editB/<%= row._id %>" style="text-decoration: none;color: black;">Sửa
+                        Bao</a></button>
+
+                    <button style="width: 90px;height: 30px;border-radius: 10px;">
+                      <a href="/sp/chitietB/<%= row._id %>" style="text-decoration: none;color: black;">Chi
+                        tiet</a></button>
+
+
+                    <!-- Modal xoa -->
+                    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false"
+                      tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                      <div class="modal-dialog">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                          </div>
+                          <div class="modal-body">
+                            Xóa sản phẩm !!!
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                            <button type="button" class="btn btn-secondary" id="btn_id">
+                              Xóa
+                            </button>
+
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </td>
+          </tr>
+        </tbody>
+
+        <% }); %>
+
+    </table>
+    <% } else { %>
+      <h3 class="text-center text-danger">Chua co ban ghi nao!!!</h3>
+      <% } %>
+
+
+        <script>
+          document.addEventListener('DOMContentLoaded', function () {
+            var productID;
+            var deleteForm = document.forms['delete-product'];
+            var btn_deleteproduct = document.getElementById('btn_id');
+            const exampleModel = document.getElementById('staticBackdrop');
+            exampleModel.addEventListener('show.bs.modal', event => {
+              const button = event.relatedTarget
+              productID = button.getAttribute('data-id');
+            });
+            btn_deleteproduct.onclick = function () {
+              deleteForm.action = '/sp/delete/' + productID + '?_method=DELETE';
+              deleteForm.submit();
+            }
+          })
+        </script>
+
+        <%- include('../layout/cuoitrang') %>

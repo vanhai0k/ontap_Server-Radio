@@ -1,0 +1,56 @@
+<%- include('../layout/dautrang') %>
+<div style="text-align: center;">
+    <h3>Sửa bài viết</h3>
+  </div>
+
+    <form action="" method="post" enctype="multipart/form-data">
+
+        <div style="text-align: center;color: brown;font-size: 18px;margin-bottom: 15px;">
+
+        </div>
+        <div style="margin-left: 350px;">
+
+            <div class="form-outline">
+                <label class="form-label" for="typeEmail" style="font-size: 16px;">Tên Bao: </label>
+                <input type="text" class="form-control" name="tieude" value="<%= objB.tieude %>"
+                    style="width: 550px;height: 50px;font-size: 18px;margin-bottom: 15px;" />
+            </div>
+            <div class="form-outline">
+                <label class="form-label" for="typeEmail" style="font-size: 16px;">Noi dung: </label>
+                <input type="text" class="form-control" name="noidung" value="<%= objB.noidung %>"
+                    style="width: 550px;height: 50px;font-size: 18px;margin-bottom: 15px;" />
+            </div>
+
+            <div class="form-group mt-4" enctype="multipart/form-data">
+                <label for="formFile" class="form-label">Images</label>
+                <input type="file" class="form-control" style="width: 260px;"
+                value="<%= objB.image %>" name="image">
+                <img src="/<%= objB.image %>" width="40" height="40" class="rounded-circle" alt="">
+            </div>
+
+            <!-- check hoat dong -->
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="status" id="flexRadioDefault1" value="1" 
+                <% if(objB.status==1) {%> checked <%} %> >
+                    <label class="form-check-label" for="flexRadioDefault1">
+                        Hoạt động
+                    </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="status" id="flexRadioDefault2" value="0" 
+                <% if(objB.status==0) {%> checked <%} %> >
+                    <label class="form-check-label" for="flexRadioDefault2">
+                        Nghỉ
+                    </label>
+            </div>
+
+        </div>
+
+        <!-- nút thêm sản phẩm  -->
+        <div style="text-align: center;margin-top: 28px;">
+            <button type="submit" class="btn btn-primary btn-block mb-4"
+                style="text-align: center;height: 50px;font-size: 20px;">Update Bao</button>
+        </div>
+    </form>
+
+    <%- include('../layout/cuoitrang') %>

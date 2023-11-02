@@ -1,0 +1,44 @@
+<%- include('../layout/dautrang') %>
+
+    <div style="text-align: center;">
+        <h4>Thong tin</h4>
+    </div>
+    <div class="mb-3">
+
+        <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">username</label>
+            <h4>
+                <%= objB.tieude %>
+            </h4>
+        </div>
+        <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Name</label>
+            <h4>
+                <%= objB.noidung %>
+            </h4>
+        </div>
+        <div class="mb-3">
+            <label for="formFile" class="form-label">Image</label>
+            <img src="/<%= objB.image %>" width="80" alt="">
+        </div>
+        <form action="" method="post">
+            <div class="mb-3 d-flex">
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="status" id="flexRadioDefault1" value="1" <% if
+                        (objB.status==1) { %> checked <% } %> >
+                        <label class="form-check-label" for="flexRadioDefault1">
+                            Hoạt động
+                        </label>
+                </div>
+                <div class="form-check  ms-3">
+                    <input class="form-check-input" type="radio" name="status" id="flexRadioDefault2" value="0" <% if
+                        (objB.status==0) { %> checked <% } %>>
+                        <label class="form-check-label" for="flexRadioDefault2">
+                            Nghi
+                        </label>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <%- include('../layout/cuoitrang') %>
